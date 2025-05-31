@@ -36,7 +36,6 @@ public class TarefaController {
 
     @DeleteMapping("{id}")
     public List<Tarefa> excluirTarefa(@PathVariable("id") Long id){
-        System.out.println(id);
         return tarefaService.excluirTarefa(id);
     }
 
