@@ -34,7 +34,7 @@ public class TarefaController {
     }
 
     @DeleteMapping("{id}")
-    public List<Tarefa> excluirTarefa(@PathVariable("id") UUID id){
+    public List<Tarefa> excluirTarefa(@PathVariable("id") Long id){
         return excluirTarefa(id);
     }
 

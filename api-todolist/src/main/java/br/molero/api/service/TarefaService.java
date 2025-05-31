@@ -31,7 +31,7 @@ public class TarefaService {
         return listarTarefas();
     }
 
-    public List<Tarefa> excluirTarefa(UUID id){
+    public List<Tarefa> excluirTarefa(Long id){
         tarefaRepository.deleteById(id);
         return listarTarefas();
     }
