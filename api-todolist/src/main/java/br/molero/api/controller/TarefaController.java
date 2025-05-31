@@ -1,5 +1,6 @@
 package br.molero.api.controller;
 
+import br.molero.api.model.Status;
 import br.molero.api.model.Tarefa;
 import br.molero.api.service.TarefaService;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,11 @@ public class TarefaController {
     public List<Tarefa> excluirTarefa(@PathVariable("id") Long id){
         System.out.println(id);
         return tarefaService.excluirTarefa(id);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<Tarefa> filtrarPorStatus(@PathVariable Status status){
+        return tarefaService.listaPorStatus(status);
     }
 
 }

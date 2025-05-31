@@ -1,5 +1,6 @@
 package br.molero.api.service;
 
+import br.molero.api.model.Status;
 import br.molero.api.model.Tarefa;
 import br.molero.api.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class TarefaService {
     public List<Tarefa> excluirTarefa(Long id){
         tarefaRepository.deleteById(id);
         return listarTarefas();
+    }
+
+    public List<Tarefa> listaPorStatus(Status status){
+        return tarefaRepository.findByStatus(status);
     }
 
 }
