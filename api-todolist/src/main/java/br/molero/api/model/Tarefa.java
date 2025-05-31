@@ -1,11 +1,13 @@
 package br.molero.api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Table(name = "tarefas")
 public class Tarefa {
 
     @Id
@@ -18,6 +20,7 @@ public class Tarefa {
     @Enumerated
     private Status status;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dataCriacao;
 
     public Long getId() {
