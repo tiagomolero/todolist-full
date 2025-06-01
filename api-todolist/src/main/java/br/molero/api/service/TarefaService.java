@@ -4,11 +4,9 @@ import br.molero.api.model.Status;
 import br.molero.api.model.Tarefa;
 import br.molero.api.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class TarefaService {
@@ -40,8 +38,7 @@ public class TarefaService {
         return listarTarefas();
     }
 
-    public List<Tarefa> listaPorStatus(Status status){
+    public List<Tarefa> listaPorStatus(Status status) {
         return tarefaRepository.findByStatus(status);
     }
-
 }
