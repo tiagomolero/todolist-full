@@ -23,6 +23,14 @@ public class Tarefa {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dataCriacao;
 
+    public Tarefa(LocalDate dataCriacao, Status status, String descricao, String titulo, Long id) {
+        this.dataCriacao = dataCriacao;
+        this.status = status;
+        this.descricao = descricao;
+        this.titulo = titulo;
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
