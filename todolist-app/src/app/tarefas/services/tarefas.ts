@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class TarefaService {
 
-  private readonly API = '/src/assets/tarefas.json';
+  private readonly API = 'http://localhost:8080/tarefas';
 
   constructor(private httpClient: HttpClient) { }
 
