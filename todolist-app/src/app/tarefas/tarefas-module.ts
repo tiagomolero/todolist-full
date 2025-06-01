@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TarefasRoutingModule } from './tarefas-routing-module';
 import {MatTableModule} from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import {MatTableModule} from '@angular/material/table';
   imports: [
     CommonModule,
     TarefasRoutingModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ]
 })
 export class TarefasModule { }

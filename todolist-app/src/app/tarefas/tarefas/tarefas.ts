@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { Tarefa } from '../model/tarefa';
 import { TarefaService } from '../services/tarefas';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tarefas',
@@ -12,13 +13,12 @@ import { TarefaService } from '../services/tarefas';
 
 export class Tarefas {
 
-  tarefas: Tarefa[] = [];
-  displayedColumns: string[] = ['titulo', 'descricao', 'status', 'data'];
+  tarefas: Observable<Tarefa[]>;
+  displayedColumns  = ['titulo', 'descricao', 'status', 'data'];
 
-  tarefasService: TarefaService
 
-  constructor(){
-    this.tarefasService = new TarefaService();
+  constructor(private tarefasService: TarefaService){
+    //this.tarefasService = new TarefaService();
     this.tarefas = this.tarefasService.list();
   }
 
