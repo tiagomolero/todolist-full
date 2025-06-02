@@ -5,7 +5,8 @@ import { TarefaForm } from './tarefa-form/tarefa-form';
 
 const routes: Routes = [
   { path: '', component: Tarefas },
-  { path: 'nova', component: TarefaForm }
+  { path: 'nova', component: TarefaForm },
+  { path: 'editar/:id', component: TarefaForm }
 ];
 
 @NgModule({

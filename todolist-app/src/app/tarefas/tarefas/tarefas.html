@@ -29,7 +29,7 @@
 
     <mat-cell *matCellDef="let tarefa">
       <button mat-icon-button aria-label="Editar Tarefa">
-        <mat-icon>edit</mat-icon>
+        <mat-icon (click)="onEdit(tarefa)">edit</mat-icon>
       </button>
 
       <button mat-icon-button aria-label="Excluir Tarefa">
