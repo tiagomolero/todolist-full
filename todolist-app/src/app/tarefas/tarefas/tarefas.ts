@@ -67,7 +67,8 @@ export class Tarefas {
           verticalPosition: 'top',
           horizontalPosition: 'center'
         });
-      }
+      },
+      error:() => this.onError("Erro ao tentar excluir a tarefa")
   });
   }
 
