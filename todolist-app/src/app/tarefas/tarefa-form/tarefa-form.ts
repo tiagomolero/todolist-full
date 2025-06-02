@@ -1,13 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppMaterialModule } from '../../shared/app-material/app-material-module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TarefaService } from '../services/tarefas';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 import { Tarefa } from '../model/tarefa';
-import { merge } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-tarefa-form',
@@ -29,8 +27,8 @@ export class TarefaForm {
   ){
     this.form = this.formBuilder.group({
       id: [null],
-      titulo: [null, [Validators.required, Validators.maxLength(100)]],
-      descricao: [null, [Validators.required, Validators.maxLength(200)]],
+      titulo: [null],
+      descricao: [null],
       status: [null],
       dataCriacao: [null]
     });
