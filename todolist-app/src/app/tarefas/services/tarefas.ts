@@ -23,10 +23,32 @@ export class TarefaService {
   }
 
   save(record: Tarefa){
+    if(record.id){
+      return this.update(record);
+    }
+    return this.create(record)
+  }
+
+  getById(id: string) {
+    return this.httpClient.get<Tarefa>(`${this.API}/${id}`)
+      .pipe(first()
+      );
+  }
+
+  private create(record: Tarefa){
     return this.httpClient.post<Tarefa>(this.API, record)
-    .pipe(
-      first()
-    );
+    .pipe(first());
+  }
+
+  private update(record: Tarefa){
+    return this.httpClient.put<Tarefa>(this.API, record)
+    .pipe(first());
+  }
+
+  remove(id: string) {
+    return this.httpClient.delete<Tarefa>(`${this.API}/${id}`)
+      .pipe(first()
+      );
   }
 
 }

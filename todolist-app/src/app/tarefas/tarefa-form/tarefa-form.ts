@@ -1,3 +1,4 @@
+import { bootstrapApplication } from '@angular/platform-browser';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppMaterialModule } from '../../shared/app-material/app-material-module';
@@ -5,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TarefaService } from '../services/tarefas';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { Tarefa } from '../model/tarefa';
 
 @Component({
   selector: 'app-tarefa-form',
@@ -25,10 +27,22 @@ export class TarefaForm {
     private location: Location
   ){
     this.form = this.formBuilder.group({
+      id: [null],
       titulo: [null],
       descricao: [null],
-      status: [null]
+      status: [null],
+      dataCriacao: [null]
+    });
+
+    const tarefa: Tarefa = this.route.snapshot.data['tarefa']
+    this.form.setValue({
+      id: tarefa.id,
+      titulo: tarefa.titulo,
+      descricao: tarefa.descricao,
+      status: tarefa.status,
+      dataCriacao: tarefa.dataCriacao
     })
+
   }
 
   onSubmit(){
