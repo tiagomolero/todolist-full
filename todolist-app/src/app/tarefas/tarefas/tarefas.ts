@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Tarefa } from '../model/tarefa';
 import { TarefaService } from '../services/tarefas';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, config, Observable, of } from 'rxjs';
 import { AppMaterialModule } from '../../shared/app-material/app-material-module';
 import { MatDialog } from '@angular/material/dialog';
 import { ErroDialogComponent } from '../../shared/components/erro-dialog/erro-dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -19,17 +20,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class Tarefas {
 
-  tarefas: Observable<Tarefa[]>;
+  tarefas: Observable<Tarefa[]> = of([]);
   displayedColumns  = ['titulo', 'descricao', 'status', 'acoes'];
-
 
   constructor(
     private tarefasService: TarefaService,
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ){
-    //this.tarefasService = new TarefaService();
+    this.refresh()
+  }
+
+  refresh(){
     this.tarefas = this.tarefasService.list()
     .pipe(
       catchError(error => {
@@ -38,6 +42,7 @@ export class Tarefas {
       })
     );
   }
+
 
   onError(errorMsg: string) {
     this.dialog.open(ErroDialogComponent, {
@@ -51,6 +56,19 @@ export class Tarefas {
 
   onEdit(tarefa: Tarefa){
     this.router.navigate(['editar', tarefa.id], {relativeTo: this.route})
+  }
+
+  onDelete(tarefa: Tarefa) {
+    this.tarefasService.remove(tarefa.id).subscribe({
+      next:() => {
+        this.refresh()
+        this.snackBar.open("Tarefa excluída com sucesso", 'X',{
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+  });
   }
 
 }

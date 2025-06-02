@@ -1,4 +1,3 @@
-import { bootstrapApplication } from '@angular/platform-browser';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppMaterialModule } from '../../shared/app-material/app-material-module';
@@ -42,7 +41,6 @@ export class TarefaForm {
       status: tarefa.status,
       dataCriacao: tarefa.dataCriacao
     })
-
   }
 
   onSubmit(){

@@ -23,19 +23,16 @@ export class TarefaService {
   }
 
   save(record: Tarefa){
+    console.log(record)
     if(record.id){
+       console.log('update')
       return this.update(record);
     }
+    console.log('create')
     return this.create(record)
   }
 
-  getById(id: string) {
-    return this.httpClient.get<Tarefa>(`${this.API}/${id}`)
-      .pipe(first()
-      );
-  }
-
-  private create(record: Tarefa){
+   private create(record: Tarefa){
     return this.httpClient.post<Tarefa>(this.API, record)
     .pipe(first());
   }
@@ -45,8 +42,14 @@ export class TarefaService {
     .pipe(first());
   }
 
+  getById(id: string) {
+    return this.httpClient.get<Tarefa>(`${this.API}/${id}`)
+      .pipe(first()
+      );
+  }
+
   remove(id: string) {
-    return this.httpClient.delete<Tarefa>(`${this.API}/${id}`)
+    return this.httpClient.delete(`${this.API}/${id}`)
       .pipe(first()
       );
   }
