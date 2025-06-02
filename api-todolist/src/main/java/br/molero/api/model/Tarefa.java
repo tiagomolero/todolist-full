@@ -2,10 +2,10 @@ package br.molero.api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.hibernate.annotations.NotFound;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tarefas")
@@ -14,11 +14,17 @@ public class Tarefa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @NotBlank
+    @NotNull
+    @Column(length = 100)
     private String titulo;
+
+    @Column(length = 200)
     private String descricao;
 
     @Enumerated
+    @NotNull
     private Status status;
 
     @JsonFormat(pattern = "dd-MM-yyyy")

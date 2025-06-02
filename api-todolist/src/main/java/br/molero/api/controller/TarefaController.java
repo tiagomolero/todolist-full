@@ -3,12 +3,16 @@ package br.molero.api.controller;
 import br.molero.api.model.Status;
 import br.molero.api.model.Tarefa;
 import br.molero.api.service.TarefaService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
+@Validated
 @RestController
 @RequestMapping("/tarefas")
 public class TarefaController {
@@ -20,7 +24,7 @@ public class TarefaController {
     }
 
     @PostMapping
-    public List<Tarefa> adicinarTarefa(@RequestBody Tarefa tarefa){
+    public List<Tarefa> adicinarTarefa(@RequestBody @Valid Tarefa tarefa){
         return tarefaService.adicionarTarefa(tarefa);
     }
 
@@ -35,7 +39,7 @@ public class TarefaController {
     }
 
     @DeleteMapping("{id}")
-    public List<Tarefa> excluirTarefa(@PathVariable("id") Long id){
+    public List<Tarefa> excluirTarefa(@PathVariable("id") @NotNull @Positive Long id){
         return tarefaService.excluirTarefa(id);
     }
 
@@ -45,7 +49,7 @@ public class TarefaController {
     }
 
     @GetMapping("{id}")
-    public Optional<Tarefa> listarTarefa(@PathVariable("id") Long id){
+    public Optional<Tarefa> listarTarefa(@PathVariable("id") @NotNull @Positive Long id){
         return tarefaService.listarTarefa(id);
     }
 
