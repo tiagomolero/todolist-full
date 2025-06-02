@@ -5,6 +5,8 @@ import { catchError, Observable, of } from 'rxjs';
 import { AppMaterialModule } from '../../shared/app-material/app-material-module';
 import { MatDialog } from '@angular/material/dialog';
 import { ErroDialogComponent } from '../../shared/components/erro-dialog/erro-dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tarefas',
@@ -18,12 +20,14 @@ import { ErroDialogComponent } from '../../shared/components/erro-dialog/erro-di
 export class Tarefas {
 
   tarefas: Observable<Tarefa[]>;
-  displayedColumns  = ['titulo', 'descricao', 'status'];
+  displayedColumns  = ['titulo', 'descricao', 'status', 'acoes'];
 
 
   constructor(
     private tarefasService: TarefaService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ){
     //this.tarefasService = new TarefaService();
     this.tarefas = this.tarefasService.list()
@@ -39,6 +43,10 @@ export class Tarefas {
     this.dialog.open(ErroDialogComponent, {
       data: errorMsg
     });
+  }
+
+  onAdd(){
+    this.router.navigate(['nova'], {relativeTo: this.route})
   }
 
 }
