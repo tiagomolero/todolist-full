@@ -6,6 +6,7 @@ import br.molero.api.service.TarefaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -28,7 +29,6 @@ public class TarefaController {
         return tarefaService.listarTarefas();
     }
 
-
     @PutMapping
     public List<Tarefa> atualizarTarefa(@RequestBody Tarefa tarefa){
         return tarefaService.atualizarTarefa(tarefa);
@@ -42,6 +42,11 @@ public class TarefaController {
     @GetMapping("/status/{status}")
     public List<Tarefa> filtrarPorStatus(@PathVariable Status status){
         return tarefaService.listaPorStatus(status);
+    }
+
+    @GetMapping("{id}")
+    public Optional<Tarefa> listarTarefa(@PathVariable("id") Long id){
+        return tarefaService.listarTarefa(id);
     }
 
 }

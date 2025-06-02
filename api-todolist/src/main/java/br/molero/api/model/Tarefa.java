@@ -2,6 +2,7 @@ package br.molero.api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.hibernate.annotations.NotFound;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -13,7 +14,7 @@ public class Tarefa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String titulo;
     private String descricao;
 
