@@ -1,7 +1,8 @@
+import { SharedModule } from './../shared/shared-module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TarefasRoutingModule } from './tarefas-routing-module';
-import { MatTableModule } from '@angular/material/table';
+import { AppMaterialModule } from '../shared/app-material/app-material-module';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     TarefasRoutingModule,
-    MatTableModule
+    AppMaterialModule,
+    SharedModule
   ]
 })
 export class TarefasModule { }
