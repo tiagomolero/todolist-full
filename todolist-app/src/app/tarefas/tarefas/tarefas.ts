@@ -48,5 +48,4 @@ export class Tarefas {
   onAdd(){
     this.router.navigate(['nova'], {relativeTo: this.route})
   }
-
 }

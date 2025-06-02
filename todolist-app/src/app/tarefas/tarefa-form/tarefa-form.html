@@ -13,9 +13,9 @@
         <input matInput placeholder="Descrição" formControlName="descricao">
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="full-width">
         <mat-label>Status</mat-label>
-        <mat-select>
+        <mat-select formControlName="status">
           <mat-option value="PENDENTE">Pendente</mat-option>
           <mat-option value="EM_ANDAMENTO">Em andamento</mat-option>
           <mat-option value="CONCLUIDA">Concluída</mat-option>

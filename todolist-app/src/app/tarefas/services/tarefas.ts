@@ -22,4 +22,11 @@ export class TarefaService {
     );
   }
 
+  save(record: Tarefa){
+    return this.httpClient.post<Tarefa>(this.API, record)
+    .pipe(
+      first()
+    );
+  }
+
 }
